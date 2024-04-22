@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d3748;
+  color: #fff;
+  height: 79px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: none !important;
+}
+
+.unigate-img :hover {
+  opacity: 0.8;
+}
+
+.user-space {
+  display: flex;
+  align-items: center;
+}
+.user-item {
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  margin-right: 10px;
+}
+
+.username {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-logout {
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  display: inline;
+}
+
+.btn-logout:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.user-content {
+  line-height: 24px;
+}
+
+.btn-login {
+  margin-left: 25px;
+}
+
+.login-text {
+  text-decoration: none;
+  color: #2d3748;
+  font-weight: bold;
+  padding: 3px 10px;
+  background-color: aliceblue;
+  border-radius: 25px;
+}
+
+.login-text:hover {
+  opacity: 0.5;
+}

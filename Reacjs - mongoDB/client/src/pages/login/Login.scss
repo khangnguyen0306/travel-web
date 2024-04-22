@@ -1,0 +1,73 @@
+.Layout-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/back-ground-image.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    .login-page {
+        padding: 4rem;
+        margin: 6.96rem 0;
+        background-color: white;
+        width: fit-content;
+        border-radius: 1rem;
+        box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, .05);
+
+        .image-login {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            .Create-account-name {
+                &:hover {
+                    color: rgb(57, 142, 221);
+                }
+            }
+
+            img {
+                padding: 4rem 4rem 4rem 4rem;
+            }
+        }
+
+        .title-login {
+            line-height: 1.6;
+            font-size: 40px;
+            font-weight: 750;
+            margin-bottom: 3rem;
+        }
+    }
+}
+
+.form-container {
+    min-width: 400px;
+
+    .form-input {
+        margin-bottom: 0.3rem;
+
+        input {
+            padding: 5px 4px;
+        }
+    }
+
+    input {
+        padding: 10px 4px;
+    }
+
+    .submit-btn {
+        margin-top: 2rem;
+        background-color: #669ed3;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        color: white;
+        box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, .05);
+        cursor: pointer;
+
+        &:hover {
+            background-color: #348bdb;
+            box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, .05);
+        }
+    }
+}

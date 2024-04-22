@@ -1,0 +1,66 @@
+.register-layout {
+    background-image: url('../../assets/back-ground-image.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    // .image-register {
+    //     padding: 0;
+    //     margin: 0;
+
+    //     img {
+    //         width: 100%;
+    //         height: 85vh;
+    //         margin-bottom: -5px
+    //     }
+    // }
+
+    .row-layout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+
+        .content-layout-register {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            margin: 4rem 2rem;
+            padding: 4rem;
+            border-radius: 10px;
+            box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, .05);
+            width: 900px;
+
+            .form-register {
+                max-width: 600px;
+                .title-login {
+                    line-height: 1.6;
+                    font-size: 36px;
+                    font-weight: 750;
+                    margin-bottom: 3rem;
+                }
+
+                .submit-btn {
+                    background-color: #669ed3;
+                    border: none;
+                    padding: 1rem 2rem;
+                    border-radius: 6px;
+                    color: white;
+                    box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, .05);
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #348bdb;
+                        box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, .05);
+                    }
+                }
+            }
+        }
+
+        .image-register {
+            padding: 0 4rem;
+        }
+
+    }
+}
