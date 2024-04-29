@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useParams } from "react-router-dom";
 import Loadable from "./Loadable";
 import MainLayout from "../layout/MainLayout";
 import AuthGuard from "./AuthGuard";
@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
             element: Admin,
           },
           {
-            path: "profile",
+            path: `profile/:userId`,
             element: Profile,
           },
          

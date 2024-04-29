@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectUser } from "../../../../../Baitap/nhom-1/src/slices/auth.slice";
+import { selectCurrentUser } from '../../slices/auth.slice';
 import "./Header.css";
 import { Avatar, Dropdown, Space } from "antd";
 // import LogoutButton from "../../../../../Baitap/nhom-1/src/pages/login/LogoutButton";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 // import UpdatePassword from "../../../../../Baitap/nhom-1/src/pages/login/UpdatePassword";
 
 const Header = (props) => {
-  const user = useSelector(selectUser);
+  const user = useSelector(selectCurrentUser);
 
   return (
     <header className="header">

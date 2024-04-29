@@ -16,19 +16,38 @@ import {
   Dropdown,
   Space,
   notification,
+  Modal,
 } from "antd";
 import useSider from "@/hooks/useSider";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut, selectCurrentUser } from "../slices/auth.slice";
+import { useGetUserByIdQuery } from "../services/userAPI";
 
 const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const user = useSelector(selectCurrentUser);
+  const { data: users, error, isLoading } = useGetUserByIdQuery(user.userData.id);
+  const location = useLocation();
+  const siderList = useSider();
   const dispatch = useDispatch();
-  const handleLogout = () => {
+  const {
+    token: { colorBgContainer, borderRadiusLG, ...other },
+  } = theme.useToken();
+
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  }
+  const handleCancel = () => {
+    setOpenModal(false);
+  }
+
+
+  const handleOk = () => {
     dispatch(logOut());
     localStorage.setItem("token", null);
     notification.success({
@@ -36,52 +55,23 @@ const MainLayout = () => {
       description: "See you again!",
     });
   };
-  const {
-    token: { colorBgContainer, borderRadiusLG, ...other },
-  } = theme.useToken();
-  const location = useLocation();
 
-  const siderList = useSider();
-
-  const items = [
-    {
-      key: '1',
-      label: (
-        <Button
-          type={"dashed"}
-          icon={<LogoutOutlined />}
-          onClick={handleLogout}
-        >
-          Log out
-        </Button>
-      ),
-    },
-    {
-      key: '2',
-      label: (
-        <Link to={"/profile"}>
-          <Button>
-            <UserOutlined />
-            Profile
-          </Button>
-        </Link>
-      ),
-    },
-
-  ];
+  if (isLoading) {
+    <h1>Loading</h1>
+  }
   return (
     <Layout
       style={{
         height: "100vh",
       }}
     >
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider trigger={Sider} collapsed={collapsed} width={"fit-content"}>
         <div
-          style={{
-            height: "100%",
-            padding: "16px",
-            flex: 1,
-          }}
+        // style={{
+        //   height: "100%",
+        //   padding: "20px",
+        //   flex: 1,
+        // }}
         >
           <Menu
             style={{
@@ -90,21 +80,37 @@ const MainLayout = () => {
               boxShadow: other.boxShadow,
               background: other.colorBgBlur,
               color: other.colorTextLightSolid,
+              padding: '5px 0'
             }}
             theme="light"
-            mode="vertical"
+            mode="inline"
             selectedKeys={[location.pathname.substring(1)]}
+            defaultSelectedKeys={['1']}
             items={[
               ...siderList.map((item) => {
                 return {
                   ...item,
                   key: item.href,
-                  label: <Link to={item.href}>{item.label}</Link>,
+                  label:
+                    <Link to={item.href}>{item.label}</Link>
                 };
-              }),
-            ]}
-          />
+              })]}
+          >
+
+          </Menu>
+          <div style={{ height: "fit-content" }}>
+            <Button onClick={handleOpenModal}>Logout</Button>
+            <Modal
+              title="Are you sure to logout?"
+              visible={openModal}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            // okText="Yes"
+            // cancelText="No"
+            />
+          </div>
         </div>
+
       </Sider>
       <Layout>
         <Header
@@ -127,35 +133,26 @@ const MainLayout = () => {
               height: 64,
             }}
           />
-          <Badge.Ribbon
-            color={"pink"}
-            text={
-              <span
-                style={{
-                  fontWeight: 600,
-                }}
-              >
-                {user?.userData.fullname}
-              </span>
-            }
+
+          <Link
+            to={`profile/${user.userData.id}`}
           >
-            <Dropdown
-              menu={{ items }}
-            >
-              {user.userData.avatar ?
-                (
-                  <img src={user.userData.avatar} height={"64px"} width={"64px"} style={{ borderRadius: '50%' }} />
-                ) : (
-                  <Avatar
-                    size="large"
-                    icon={<UserOutlined />}
-                    style={{
-                      marginLeft: "auto",
-                    }}
-                  />
-                )}
-            </Dropdown>
-          </Badge.Ribbon>
+            {users?.avatar ?
+              (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <img src={users?.avatar} height={"64px"} width={"64px"} style={{ borderRadius: '50%' }} />
+                  <h4>{users.fullname}</h4>
+                </div>
+              ) : (
+                <Avatar
+                  size="large"
+                  icon={<UserOutlined />}
+                  style={{
+                    marginLeft: "auto",
+                  }}
+                />
+              )}
+          </Link>
         </Header>
         <Content
           style={{
