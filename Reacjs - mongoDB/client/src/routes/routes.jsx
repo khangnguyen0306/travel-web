@@ -7,6 +7,8 @@ const Login = Loadable({ loader: () => import("../pages/login/Login") });
 const userRegister = Loadable({ loader: () => import("../pages/login/register") });
 const Home = Loadable({ loader: () => import("../pages/home/Home") });
 const Profile = Loadable({ loader: () => import("../pages/userManagement/userProfile/profille") });
+const CreatePosts = Loadable({ loader: () => import("../pages/Post/component/createPost") });
+const PostDetail = Loadable({ loader: () => import("../pages/Post/component/PostDetails") });
 
 const Dashboard = Loadable({
   loader: () => import("../pages/dashboard/Dashboard"),
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
           {
             path: `profile/:userId`,
             element: Profile,
+          },
+          {
+            path: `createPosts`,
+            element:CreatePosts ,
+          },
+          {
+            path: `postDetails/:postId`,
+            element: PostDetail,
           },
          
         ],

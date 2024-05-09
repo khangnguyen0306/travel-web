@@ -1,6 +1,7 @@
 import { flowerApi } from "../services/flowerApi";
 import { userAPI } from "../services/userAPI";
 import { authApi } from "../services/AuthApi";
+import { PostsAPI } from "../services/PostsAPI";
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 // ...import { persistStore, persistReducer } from 'redux-persist';
@@ -9,6 +10,7 @@ import storage from "redux-persist/lib/storage"; // Sử dụng localStorage
 import flowerReducer from "../slices/flower.slice";
 import userReducer from "../slices/user.slice";
 import authReducer from "../slices/auth.slice";
+import postReducer from "../slices/posts.slice";
 const persistConfig = {
   key: "root",
   storage,
@@ -21,25 +23,29 @@ const staticReducers = {
 const persistedReducer = persistReducer(persistConfig, flowerReducer);
 const persistedUserReducer = persistReducer(persistConfig, userReducer);
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedPostReducer = persistReducer(persistConfig, postReducer);
 export const store = configureStore({
   reducer: {
 
     [flowerApi.reducerPath]: flowerApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
+    [PostsAPI.reducerPath]: PostsAPI.reducer,
     flower: persistedReducer,
     user: persistedUserReducer,
     auth: persistedAuthReducer,
+    post: persistedPostReducer,
     ...staticReducers
   },
   middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware({
-    serializableCheck: false,
-  }).concat(
-    userAPI.middleware,
-    authApi.middleware,
-    flowerApi.middleware,
-  ), 
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(
+      userAPI.middleware,
+      authApi.middleware,
+      PostsAPI.middleware,
+      flowerApi.middleware,
+    ),
 });
 
 // Add a dictionary to keep track of the registered async reducers

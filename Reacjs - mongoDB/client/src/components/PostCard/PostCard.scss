@@ -1,0 +1,31 @@
+// PostCard.module.scss
+.post-card {
+    margin-bottom: 16px;
+    .ant-card {
+      height: 100%;
+      transition: box-shadow 0.3s;
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .ant-card-cover {
+        img {
+          width: 100%;
+          height: 200px; // Adjust as needed
+          object-fit: cover;
+        }
+      }
+      .ant-card-actions {
+        border-top: none;
+        text-align: center;
+      }
+      .ant-card-meta-title {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .ant-card-meta-description {
+        font-size: 14px;
+        color: #666;
+      }
+    }
+  }
+  

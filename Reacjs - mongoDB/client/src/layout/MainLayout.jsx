@@ -62,16 +62,17 @@ const MainLayout = () => {
   return (
     <Layout
       style={{
-        height: "100vh",
+        height: "fit-content",
+        minHeight:'100vh'
       }}
     >
       <Sider trigger={Sider} collapsed={collapsed} width={"fit-content"}>
         <div
-        // style={{
-        //   height: "100%",
-        //   padding: "20px",
-        //   flex: 1,
-        // }}
+        style={{
+          height: "100%",
+          padding: "20px",
+          flex: 1,
+        }}
         >
           <Menu
             style={{
@@ -140,8 +141,7 @@ const MainLayout = () => {
             {users?.avatar ?
               (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <img src={users?.avatar} height={"64px"} width={"64px"} style={{ borderRadius: '50%' }} />
-                  <h4>{users.fullname}</h4>
+                  <img src={users?.avatar} height={"50px"} width={"50px"} style={{ borderRadius: '50%' }} />
                 </div>
               ) : (
                 <Avatar
@@ -164,7 +164,7 @@ const MainLayout = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <Outlet />
+          <Outlet/>
         </Content>
       </Layout>
     </Layout>

@@ -1,8 +1,50 @@
-.header-user-profile{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    .header-user-profile-title{
-        color: white;
+.profile-information-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+$color-main-text: #8898aa;
+$color-title-text: #676b7f;
+
+.profile-information-content {
+    .profile-information-content-subtitle {
+        color: $color-main-text;
+        font-weight: 500;
+        letter-spacing: 1px;
     }
+
+    .profile-information-content-type {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 1.8rem;
+        flex-direction: row;
+
+        .profile-information-content-input {
+            margin: 20px 10px 10px 10px;
+
+            label {
+                font-size: 16px;
+                font-weight: 500;
+                color: $color-title-text;
+            }
+
+            input {
+                height: 45px;
+                border: 1px solid #e2e7ed;
+                box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                margin-top: 8px;
+                color: $color-main-text;
+            }
+        }
+    }
+}
+.profile-card-user{
+    .profile-card-user-name{
+        font-size: 18px;
+        font-weight: 500;
+        margin: 10px 10px 0 0 ;
+    }   
 }
